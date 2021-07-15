@@ -33,7 +33,7 @@ class Wallpaper extends React.Component<any, any> {
     fetchNewWallpaper() {
         const apiParams = { accessKey: "2c9dcd6b8254123aefe8230efdf3c59258a74aa867d3b4eafce4e95673974487" };
         const unsplash = createApi(apiParams);
-        unsplash.photos.getRandom({ query: "wallpaper" }).then(result => {
+        unsplash.photos.getRandom({ query: "nature,wallpaper" }).then(result => {
             if (result.errors) console.log('error occurred: ', result.errors[0]);
             else this.setState({ currentWallpaper: result.response });
         });
