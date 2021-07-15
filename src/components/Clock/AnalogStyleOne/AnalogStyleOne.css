@@ -1,0 +1,90 @@
+.analog-style-one .clock {
+    width: var(--mainClockSize);
+    height: var(--mainClockSize);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('AnalogStyleOne.png');
+    background-size: cover;
+    border: 4px;
+    box-shadow: 0em -1.2em 1.2em rgba(255, 255, 255, 0.06),
+                inset 0em -1.2em 1.2em rgba(255, 255, 255, 0.06),
+                0em 1.2em 1.2em rgba(0, 0, 0, 0.3),
+                inset 0em 1.2em 1.2em rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    background-color: rgba(217, 227, 241, 0.5);
+}
+
+.analog-style-one  .clock:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: rgb(255, 255, 255);
+    border-radius: 50%;
+    z-index: 10000;
+}
+
+.analog-style-one .clock .hour,
+.analog-style-one .clock .min,
+.analog-style-one .clock .sec {
+    position: absolute;
+}
+
+.analog-style-one .clock .hour, 
+.analog-style-one .hr {
+    width: calc(var(--mainClockSize) * .55);
+    height: calc(var(--mainClockSize) * .55);
+} 
+
+.analog-style-one .clock .min, 
+.analog-style-one .mn {
+    width: calc(var(--mainClockSize) * .65);
+    height: calc(var(--mainClockSize) * .65);
+}
+
+.analog-style-one .clock .sec, 
+.analog-style-one .sc {
+    width: calc(var(--mainClockSize) * .7);
+    height: calc(var(--mainClockSize) * .7);
+}
+
+.analog-style-one .hr, 
+.analog-style-one .mn,
+.analog-style-one .sc {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+    
+}
+
+.analog-style-one .hr:before {
+    content: '';
+    position: absolute;
+    width: 7.5px;
+    height: calc(var(--mainClockSize) * .33);
+    background: #f81460;
+    z-index: 10;
+    border-radius: 2.8px;
+}
+
+.analog-style-one .mn:before {
+    content: '';
+    position: absolute;
+    width: 3.5px;
+    height: calc(var(--mainClockSize) * .4);
+    background: #ffffff;
+    z-index: 11;
+    border-radius: 3px;
+}
+
+.analog-style-one .sc:before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: calc(var(--mainClockSize) * .45);
+    background: #0075fa80;
+    z-index: 12;
+    border-radius: 3px;
+}

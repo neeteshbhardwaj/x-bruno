@@ -1,0 +1,17 @@
+.digital-style-one {
+    font-size: 200px;
+    color: white;
+}
+.digital-style-one .colon {
+    animation: colonAnimation 1s infinite;
+}
+
+@keyframes colonAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
