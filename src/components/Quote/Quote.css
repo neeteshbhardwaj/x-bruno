@@ -1,7 +1,44 @@
-.dashboard-quote {
+.dashboard-quote .blockquote, .dashboard-quote .blockquote-footer{
     color: white;
 }
 
 .text-justify {
     text-align: justify;
+}
+
+.dashboard-quote .icon {
+    color: var(--bs-white);
+    font-size: var(--wallpaper-details-font-size);
+    width: 25px;
+    border: 1px solid white;
+    border-radius: 50%;
+    height: 25px;
+    padding: 2px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dashboard-quote .icon:hover {
+    color: var(--bs-gray-dark);
+    background-color: var(--bs-white);
+}
+
+.dashboard-quote .icon.fetching {
+    animation: circularAnimation 1s linear infinite;
+}
+
+@keyframes circularAnimation {
+    from {
+        transform: rorate(0deg);
+    }
+
+    to {
+        transform: rorate(360deg);
+    }
+}
+
+.dashboard-quote-container .blur-bg {
+    background: var(--bs-gray);
+    filter: blur(80px);
+    z-index: -1;
 }

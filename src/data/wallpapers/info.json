@@ -1,0 +1,5 @@
+{
+    "total": 600,
+    "pageSize": 100,
+    "fileNamePattern": "wallpapers_<start>_<end>.json"
+}

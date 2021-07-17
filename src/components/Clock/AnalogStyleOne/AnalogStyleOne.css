@@ -12,7 +12,7 @@
                 0em 1.2em 1.2em rgba(0, 0, 0, 0.3),
                 inset 0em 1.2em 1.2em rgba(0, 0, 0, 0.3);
     border-radius: 50%;
-    background-color: rgba(217, 227, 241, 0.5);
+    background-color: rgba(217, 227, 241, 0.7);
 }
 
 .analog-style-one  .clock:before {
@@ -74,7 +74,7 @@
     position: absolute;
     width: 3.5px;
     height: calc(var(--mainClockSize) * .4);
-    background: #ffffff;
+    background: #0075fa;
     z-index: 11;
     border-radius: 3px;
 }
@@ -84,7 +84,7 @@
     position: absolute;
     width: 2px;
     height: calc(var(--mainClockSize) * .45);
-    background: #0075fa80;
+    background: #ffffff;
     z-index: 12;
     border-radius: 3px;
 }

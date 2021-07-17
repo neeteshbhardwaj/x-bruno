@@ -1,51 +1,45 @@
 import * as React from 'react';
-import { createApi } from 'unsplash-js';
 import { Blurhash } from "react-blurhash";
 import './Wallpaper.css';
 import { ButtonGroup } from 'react-bootstrap';
-import { ArrowRepeat, BoxArrowUpRight } from 'react-bootstrap-icons';
+import { ArrowRepeat, Arrow90degRight } from 'react-bootstrap-icons';
+import UserSettingsProvider from '../../helpers/UserSettingsProvider';
+import DataUrlProvider from '../../helpers/DataUrlProvider';
 
 class Wallpaper extends React.Component<any, any> {
     constructor(props: {}) {
         super(props);
-        const defaultWallpaper = {
-            blur_hash: "LEHV6nWB2yk8pyo0adR*.7kCMdnj",
-            urls: {
-                full: ""
-            },
-            location: {
-                title: "Bruno!"
-            },
-            links: {
-                html: ""
-            }
-        };
-
-        this.state = {
-            currentWallpaper: defaultWallpaper
-        };
+        this.state = {};
     }
 
     componentDidMount() {
-        this.fetchNewWallpaper();
+        this.fetchWallpaper("current");
     }
 
-    fetchNewWallpaper() {
-        const apiParams = { accessKey: "2c9dcd6b8254123aefe8230efdf3c59258a74aa867d3b4eafce4e95673974487" };
-        const unsplash = createApi(apiParams);
-        unsplash.photos.getRandom({ query: "nature,wallpaper" }).then(result => {
-            if (result.errors) console.log('error occurred: ', result.errors[0]);
-            else this.setState({ currentWallpaper: result.response });
-        });
+    fetchWallpaper(which: string) {
+        const loadWallpaper = (wallpaperNo: number, wallpaper: {}) => {
+            this.setState({ wallpaper: wallpaper, progress: 'fetched' });
+            UserSettingsProvider.set({ wallpaperSettings: { whenUsed: new Date().getTime(), lastUsed: wallpaperNo } });
+        };
+        const doFetch = (wallpaperNo: number) => DataUrlProvider.get("wallpapers", wallpaperNo)
+            .then(urlInfo => fetch(urlInfo.url)
+                .then(res => res.json())
+                .then(wallpapers => loadWallpaper(wallpaperNo, wallpapers[wallpaperNo % urlInfo.pageSize])));
+
+        UserSettingsProvider.get()
+            .then(userSettings => userSettings.wallpaperSettings)
+            .then((wallpaperSettings = { lastUsed: 1 }) => wallpaperSettings.lastUsed)
+            .then(lastUsed => lastUsed + (which == "current" ? 0 : 1))
+            .then(doFetch);
     }
 
     openInNewTab() {
-        window.open(this.state.currentWallpaper.links.html, "_wallpaper");
+        window.open(this.state.wallpaper.links.html, "_wallpaper");
     }
 
     render() {
-        const wallpaper = this.state.currentWallpaper;
-        return (
+        const wallpaper = this.state.wallpaper;
+        if (wallpaper) return (
             <div>
                 <Blurhash className="wallpaper"
                     hash={wallpaper.blur_hash}
@@ -53,22 +47,28 @@ class Wallpaper extends React.Component<any, any> {
                     resolutionY={32}
                     punch={1}
                 />
+
                 <div className="wallpaper" style={{ backgroundImage: `url('${wallpaper.urls.full}')` }}>
                     <div className="details position-absolute bottom-0 end-0">
-                        <div className="text-end actions">
+                        <span className="item action-panel touch-up"></span>
+                        <span className="item action-panel panel">
                             <ButtonGroup>
-                                <ArrowRepeat className="icon" onClick={() => this.fetchNewWallpaper()} />
-                                <BoxArrowUpRight className="icon" onClick={() => this.openInNewTab()} />
+                                <ArrowRepeat className="icon" onClick={() => this.fetchWallpaper("next")} />
+                                <Arrow90degRight className="icon" onClick={() => this.openInNewTab()} />
                             </ButtonGroup>
-                        </div>
-                        <div className="">
-                            <div className="item touch-up"></div>
-                            <div className="item info">{wallpaper.location.title}</div>
-                        </div>
+                        </span>
+                        <span className="item info-panel touch-up"></span>
+                        <span className="item info-panel panel">{wallpaper.user.location}</span>
                     </div>
                 </div>
             </div>
         );
+        else return (<div className="wallpaper brand-name">
+            <div className="details position-absolute bottom-0 end-0">
+                <span className="item info-panel touch-up"></span>
+                <span className="item info-panel panel">Bruno!</span>
+            </div>
+        </div>);
     }
 }
 

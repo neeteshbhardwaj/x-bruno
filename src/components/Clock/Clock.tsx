@@ -3,7 +3,6 @@ import "./Clock.css";
 import AnalogStyleOne from "./AnalogStyleOne/AnalogStyleOne";
 import DigitalStyleOne from "./DigitalStyleOne/DigitalStyleOne";
 
-
 class Clock extends React.Component<any, any> {
     constructor(props: {}) {
         super(props);
@@ -12,16 +11,13 @@ class Clock extends React.Component<any, any> {
     componentDidMount() {
     }
 
-
     render() {
         return (
             <div>
-                <DigitalStyleOne />
+                <AnalogStyleOne />
             </div>
         );
     }
 }
-
-
 
 export default Clock

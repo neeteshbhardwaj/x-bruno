@@ -1,0 +1,15 @@
+.settings-sidebar .pull-btn, .settings-sidebar-body .pull-btn {
+    left: 16px !important;
+    padding: 5px;
+    border-radius: 0 50% 50% 0;
+    height: 50px;
+    width: 50px;
+}
+
+.settings-sidebar-body .pull-btn {
+    left: 420px !important;
+}
+
+.settings-sidebar .pull-btn svg, .settings-sidebar-body .pull-btn svg {
+    margin: 10px;
+}

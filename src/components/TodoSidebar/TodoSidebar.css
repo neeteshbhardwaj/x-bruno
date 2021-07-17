@@ -1,4 +1,4 @@
-.todo .pull-btn, .todo-body .pull-btn {
+.todo-sidebar .pull-btn, .todo-sidebar-body .pull-btn {
     right: -25px !important;
     padding: 5px;
     border-radius: 50% 0 0 50%;
@@ -6,10 +6,10 @@
     width: 50px;
 }
 
-.todo-body .pull-btn {
+.todo-sidebar-body .pull-btn {
     right: 370px !important;
 }
 
-.todo .pull-btn svg, .todo-body .pull-btn svg {
+.todo-sidebar .pull-btn svg, .todo-sidebar-body .pull-btn svg {
     margin: 10px;
 }

@@ -1,0 +1,5 @@
+{
+    "total": 1600,
+    "pageSize": 100,
+    "fileNamePattern": "quotes_<start>_<end>.json"
+}

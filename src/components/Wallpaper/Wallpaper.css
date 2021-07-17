@@ -7,50 +7,84 @@
   left: 0;
   z-index: -1;
   background-size: cover;
-
-  --wallpaper-details-height: 40px;
-  --wallpaper-details-font-size: calc((var(--wallpaper-details-height) * 6 ) / 11);
-}
-.wallpaper .details .actions {
-  visibility: hidden;
+  cursor: default;
 }
 
-.wallpaper .details:hover .actions {
-  visibility: visible;
+.wallpaper .details {
+  --details-panel-height: 40px;
+  font-size: calc(var(--details-panel-height) * .75);
+  line-height: 1;
+  height: var(--details-panel-height);
+  display: flex;
+  color: var(--bs-light);
+  opacity: 0.9;
 }
 
 .wallpaper .details .item {
-  opacity: 0.7;
-  height: var(--wallpaper-details-height);
-  font-size: var(--wallpaper-details-font-size);
-  font-family: inherit;
-  color: var(--bs-white);
-  float: left;
-  padding: calc(var(--wallpaper-details-height) / 11);
+  padding: calc(var(--details-panel-height) * .12);
 }
 
-.wallpaper .details .info {
-  min-width: 100px;
-  background: var(--bs-gray-dark);
-  padding-left: 20px;
+.wallpaper .details .action-panel {
+  --common-bg-color: transparent;
+  --panel-fill-color: var(--bs-gray);
+  visibility: hidden;
+}
+
+.wallpaper .details .info-panel {
+  --common-bg-color: transparent;
+  --panel-fill-color: var(--bs-gray-dark);
+}
+
+.wallpaper .details .panel {
+  background-color: var(--panel-fill-color);
 }
 
 .wallpaper .details .touch-up {
   width: 0;
   height: 0;
   padding: 0 !important;
-  border-bottom: var(--wallpaper-details-height) solid var(--bs-gray-dark);
-  border-left: var(--wallpaper-details-height) solid transparent;
+  border-bottom: var(--details-panel-height) solid var(--panel-fill-color);
+  border-left: var(--details-panel-height) solid var(--common-bg-color);
 }
 
-.wallpaper .actions .icon {
+.wallpaper .details:hover .action-panel {
+  visibility: visible;
+}
+.wallpaper .details:hover .info-panel {
+  --common-bg-color: var(--bs-gray);
+}
+
+.wallpaper .details .action-panel .btn-group {
+  margin-top: -8px;
+}
+
+.wallpaper .details .action-panel .icon {
   color: var(--bs-white);
   font-size: var(--wallpaper-details-font-size);
+  width: 30px;
+  border: 1px solid white;
+  border-radius: 50%;
+  height: 30px;
+  padding: 5px;
   margin: 0 5px;
-  background: var(--bs-gray-dark);
-  padding: 3px 5px;
   cursor: pointer;
-  border-radius: 5px 5px 0 0;
-  opacity: 0.7;
-  width: 35px;
+}
+
+.wallpaper .details .action-panel .icon:hover {
+  color: var(--bs-gray-dark);
+  background-color: var(--bs-white);
+}
+
+.wallpaper.fetched {
+  animation: clearEffect 3s linear normal;
+} 
+
+@keyframes clearEffect {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

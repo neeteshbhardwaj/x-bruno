@@ -5,9 +5,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 const config = {
   entry: {
     index: path.join(__dirname, "src/pages/index/index.tsx"),
-    popup: path.join(__dirname, "src/pages/popup/popup.tsx"),
-    content: path.join(__dirname, "src/scripts/content.ts"),
-    background: path.join(__dirname, "src/scripts/background.ts"),
+    // popup: path.join(__dirname, "src/pages/popup/popup.tsx"),
+    // options: path.join(__dirname, "src/pages/options/options.tsx"),
+    // content: path.join(__dirname, "src/scripts/content.ts"),
+    background: path.join(__dirname, "src/scripts/background.ts"),    
   },
   output: { path: path.join(__dirname, "dist"), filename: "[name].js" },
   module: {
@@ -69,7 +70,10 @@ const config = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: "public", to: "." }],
+      patterns: [
+        { from: "public", to: "." },
+        { from: "src/data", to: "./data" }
+      ],
     }),
   ],
 };
